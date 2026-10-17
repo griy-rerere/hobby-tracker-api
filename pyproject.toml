@@ -1,0 +1,32 @@
+[project]
+name = "hobby-tracker-api"
+version = "0.1.0-dev"
+description = "Python Web API of the Hobby Tracker Application"
+authors = [
+    {name = "Grigoriy Re:Re:Re",email = "griy_rerere.contact@icloud.com"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "hobby-tracker-core (>=0.1.0)",
+    "hobby-tracker-infrastructure (>=0.1.0)",
+]
+
+[tool.poetry.dependencies]
+hobby-tracker-core = {path = "../hobby-tracker-core", develop = true}
+hobby-tracker-infrastructure = {path = "../hobby-tracker-infrastructure", develop = true}
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.17.1,<0.18.0)",
+    "pytest (>=9.1.1,<10.0.0)",
+    "mypy (>=2.4.0,<3.0.0)",
+    "pre-commit (>=4.7.0,<5.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)"
+]
