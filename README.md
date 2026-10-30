@@ -34,12 +34,10 @@ Authorization is achieved via JWT(JSON Web Token) standard. API is responsible f
 
 ## 🚀 Run
 
-Regular run with *uvicorn* web server:
+Run with `fastapi` command:
 ```
-poetry run fastapi run
+poetry run fastapi dev
 ```
-
-The command above is a mock. A correct one will be attached later.
 
 ## 🛠️ Code Quality & Verification
 
