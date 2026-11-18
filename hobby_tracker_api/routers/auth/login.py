@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from hobby_tracker_api.ports.auth import AuthTokenService
 from hobby_tracker_api.ports.user import AuthorizeError, UserService
 from hobby_tracker_api.schemas import Token
+from hobby_tracker_api.dependencies.auth_dependencies import get_token_service, get_user_service
 
 from .router import auth_router
 
@@ -21,8 +22,8 @@ class LoginForm(BaseModel):
 )
 async def login_user(
     form_data: LoginForm,
-    user_service: Annotated[UserService, Depends()],
-    token_service: Annotated[AuthTokenService, Depends()],
+    user_service: Annotated[UserService, Depends(get_user_service)],
+    token_service: Annotated[AuthTokenService, Depends(get_token_service)],
 ) -> Token:
     try:
         user_id = await user_service.authorize(
