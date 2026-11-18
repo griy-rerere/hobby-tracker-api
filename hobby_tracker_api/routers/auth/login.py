@@ -3,10 +3,13 @@ from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from pydantic import BaseModel
 
+from hobby_tracker_api.dependencies.auth_dependencies import (
+    get_token_service,
+    get_user_service,
+)
 from hobby_tracker_api.ports.auth import AuthTokenService
 from hobby_tracker_api.ports.user import AuthorizeError, UserService
 from hobby_tracker_api.schemas import Token
-from hobby_tracker_api.dependencies.auth_dependencies import get_token_service, get_user_service
 
 from .router import auth_router
 

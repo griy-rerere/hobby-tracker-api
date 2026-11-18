@@ -4,13 +4,15 @@ from uuid import UUID
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
+from hobby_tracker_api.infrastructure import InMemoryTokenService, SQLAlchemyUserService
 from hobby_tracker_api.ports.auth import (
     AuthTokenService,
     InvalidTokenError,
     TokenExpiredError,
 )
 from hobby_tracker_api.ports.user import UserService
-from hobby_tracker_api.infrastructure import InMemoryTokenService
+
+from .sqla import SQLASession
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -20,8 +22,9 @@ token_service = InMemoryTokenService()
 def get_token_service() -> AuthTokenService:
     return token_service
 
-def get_user_service() -> UserService:
-    return ...
+
+def get_user_service(session: SQLASession) -> UserService:
+    return SQLAlchemyUserService(session=session)
 
 
 async def get_current_user_id(

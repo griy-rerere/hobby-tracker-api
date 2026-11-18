@@ -1,9 +1,15 @@
-from dotenv import load_dotenv
 import os
 
+from dotenv import load_dotenv
 
-class SettingsException(Exception): pass
-class RequiredENV(Exception): pass
+
+class SettingsException(Exception):
+    pass
+
+
+class RequiredENV(Exception):
+    pass
+
 
 load_dotenv()
 

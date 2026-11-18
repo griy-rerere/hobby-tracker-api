@@ -1,19 +1,20 @@
+import secrets
+from asyncio import Lock
+from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
+from hashlib import sha256
+from uuid import UUID
+
+import jwt
+
 from hobby_tracker_api.ports import auth
 from hobby_tracker_api.settings import (
     ACCESS_TOKEN_EXPIRE_MINUTES,
-    AUTH_SECRET_KEY,
     AUTH_ALGORITHM,
+    AUTH_SECRET_KEY,
     REFRESH_TOKEN_BYTES,
     REFRESH_TOKEN_EXPIRE_DAYS,
 )
-
-from dataclasses import dataclass
-from uuid import UUID
-from datetime import datetime, timedelta, timezone
-from hashlib import sha256
-from asyncio import Lock
-import secrets
-import jwt
 
 
 @dataclass(frozen=True, slots=True)
@@ -38,9 +39,7 @@ class InMemoryTokenService:
         payload = {
             "sub": str(user_id),
             "iat": now,
-            "exp": now + timedelta(
-                minutes=ACCESS_TOKEN_EXPIRE_MINUTES
-            ),
+            "exp": now + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
         }
 
         return jwt.encode(
@@ -84,9 +83,7 @@ class InMemoryTokenService:
 
             self._refresh_tokens[token_hash] = RefreshSession(
                 user_id=user_id,
-                expires_at=now + timedelta(
-                    days=REFRESH_TOKEN_EXPIRE_DAYS
-                ),
+                expires_at=now + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS),
             )
 
         return access_token, refresh_token
@@ -157,18 +154,14 @@ class InMemoryTokenService:
 
             user_id = session.user_id
 
-            access_token = self._create_access_token(
-                user_id=user_id
-            )
+            access_token = self._create_access_token(user_id=user_id)
 
             new_refresh_token = self._create_refresh_token()
             new_hash = self._hash_token(new_refresh_token)
 
             self._refresh_tokens[new_hash] = RefreshSession(
                 user_id=user_id,
-                expires_at=now + timedelta(
-                    days=REFRESH_TOKEN_EXPIRE_DAYS
-                ),
+                expires_at=now + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS),
             )
 
             return access_token, new_refresh_token

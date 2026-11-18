@@ -3,11 +3,13 @@ from hobby_tracker_infrastructure.persistence.sqlalchemy import (
     SqlalchemyActivityRepository,
     SqlalchemyHobbyRepository,
     SqlalchemyUOW,
-    queries as sqla_queries
 )
-from .sqla import SQLASession
-from .auth_dependencies import CurrentUserID
+from hobby_tracker_infrastructure.persistence.sqlalchemy import (
+    queries as sqla_queries,
+)
 
+from .auth_dependencies import CurrentUserID
+from .sqla import SQLASession
 
 
 def get_command_bus(
@@ -59,8 +61,16 @@ def get_command_bus(
 
 def get_query_bus(sqla_session: SQLASession, user_id: CurrentUserID) -> QueryBus:
     bus = QueryBus()
-    
-    bus.register(queries.HobbiesStatsQuery, sqla_queries.SqlalchemyHobbiesStatsHandler(session=sqla_session, user_id=user_id))
-    bus.register(queries.HobbyStatsQuery, sqla_queries.SqlalchemyHobbyStatsHandler(session=sqla_session, user_id=user_id))
+
+    bus.register(
+        queries.HobbiesStatsQuery,
+        sqla_queries.SqlalchemyHobbiesStatsHandler(
+            session=sqla_session, user_id=user_id
+        ),
+    )
+    bus.register(
+        queries.HobbyStatsQuery,
+        sqla_queries.SqlalchemyHobbyStatsHandler(session=sqla_session, user_id=user_id),
+    )
 
     return bus

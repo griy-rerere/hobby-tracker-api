@@ -3,9 +3,9 @@ from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from pydantic import BaseModel
 
+from hobby_tracker_api.dependencies.auth_dependencies import get_token_service
 from hobby_tracker_api.ports.auth import AuthTokenService, CannotRefreshSession
 from hobby_tracker_api.schemas import Token
-from hobby_tracker_api.dependencies.auth_dependencies import get_token_service
 
 from .router import auth_router
 
