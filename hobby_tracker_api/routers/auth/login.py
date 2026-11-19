@@ -9,9 +9,9 @@ from hobby_tracker_api.dependencies.auth_dependencies import (
 )
 from hobby_tracker_api.ports.auth import AuthTokenService
 from hobby_tracker_api.ports.user import AuthorizeError, UserService
-from hobby_tracker_api.schemas import Token
 
 from .router import auth_router
+from .schemas import Token
 
 
 class LoginForm(BaseModel):

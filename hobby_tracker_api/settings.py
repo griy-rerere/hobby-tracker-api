@@ -23,21 +23,17 @@ if (var := os.getenv("AUTH_SECRET_KEY")) is None:
 AUTH_SECRET_KEY = var
 
 if (var := os.getenv("AUTH_ALGORITHM")) is None:
-    AUTH_ALGORITHM = "HS256"
-else:
-    AUTH_ALGORITHM = var
+    var = "HS256"
+AUTH_ALGORITHM = var
 
 if (var := os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")) is None:
-    ACCESS_TOKEN_EXPIRE_MINUTES = 30
-else:
-    ACCESS_TOKEN_EXPIRE_MINUTES = int(var)
+    var = "30"
+ACCESS_TOKEN_EXPIRE_MINUTES = int(var)
 
 if (var := os.getenv("REFRESH_TOKEN_EXPIRE_DAYS")) is None:
-    REFRESH_TOKEN_EXPIRE_DAYS = 30
-else:
-    REFRESH_TOKEN_EXPIRE_DAYS = int(var)
+    var = "30"
+REFRESH_TOKEN_EXPIRE_DAYS = int(var)
 
 if (var := os.getenv("REFRESH_TOKEN_BYTES")) is None:
-    REFRESH_TOKEN_BYTES = 32
-else:
-    REFRESH_TOKEN_BYTES = int(var)
+    var = "32"
+REFRESH_TOKEN_BYTES = int(var)
