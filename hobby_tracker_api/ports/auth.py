@@ -20,7 +20,7 @@ class CannotRefreshSession(AuthError):
 
 class AuthTokenService(Protocol):
     async def create_session(self, *, user_id: UUID) -> tuple[str, str]:
-        """Creates a session pair: (access_token_jwt, refresh_token_jwt)"""
+        """Creates a session pair: (access_token_jwt, refresh_token)"""
         ...
 
     async def verify_access_token(self, *, token: str) -> UUID:
