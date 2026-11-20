@@ -1082,11 +1082,13 @@ optional = false
 python-versions = ">=3.14"
 groups = ["main"]
 files = []
-develop = true
+develop = false
 
 [package.source]
-type = "directory"
-url = "../hobby-tracker-core"
+type = "git"
+url = "https://github.com/griy-rerere/hobby-tracker-core.git"
+reference = "HEAD"
+resolved_reference = "45239b6e744ba5f97f71b6dbfb11ce1f00d34af0"
 
 [[package]]
 name = "hobby-tracker-infrastructure"
@@ -2047,14 +2049,14 @@ re2 = ["google-re2 (>=1.1)"]
 
 [[package]]
 name = "platformdirs"
-version = "4.14.7"
+version = "4.14.8"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
 optional = false
 python-versions = ">=3.11"
 groups = ["dev"]
 files = [
-    {file = "platformdirs-4.14.7-py3-none-any.whl", hash = "sha256:391513b74707c42335fff3ea17eaac657a7ee9ffcadd809634d34ea594d0122c"},
-    {file = "platformdirs-4.14.7.tar.gz", hash = "sha256:5472257c1cf97a14658af52997011c7e59e4aebf3a24950b973c11b579e1b074"},
+    {file = "platformdirs-4.14.8-py3-none-any.whl", hash = "sha256:1e34af590de4d978631b751eb2202f2fee4497537a17c1720b12fcf57b331392"},
+    {file = "platformdirs-4.14.8.tar.gz", hash = "sha256:96893d686e84e9e6f358a9ea41a8de544df66dbf2ba6cda250e7dc73acf85b9b"},
 ]
 
 [[package]]
@@ -3447,4 +3449,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14"
-content-hash = "8c0d8f6ff81e22cc7d5df50c2c12894f7145cdba88cbedb50a21d6861b685ea7"
+content-hash = "a3e404709dc98c45b68417eb2c48b5a5c8e5257548f875cfa635fd7721e96916"

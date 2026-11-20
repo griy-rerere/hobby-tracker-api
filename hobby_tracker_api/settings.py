@@ -37,3 +37,7 @@ REFRESH_TOKEN_EXPIRE_DAYS = int(var)
 if (var := os.getenv("REFRESH_TOKEN_BYTES")) is None:
     var = "32"
 REFRESH_TOKEN_BYTES = int(var)
+
+if (var := os.getenv("MANUAL_MIGRATION")) is None:
+    var = "true"
+MANUAL_MIGRATION = bool(var)
